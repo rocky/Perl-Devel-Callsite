@@ -16,7 +16,7 @@ callsite()
     CODE:
 #if PERL_VERSION > 8
 	cx = &cxstack[cxstack_ix];
-	RETVAL = (IV)(cx->blk_sub.retop);
+	RETVAL = PTR2UV(cx->blk_sub.retop);
 #else
 	RETVAL = (IV)(PL_retstack[PL_retstack_ix - 1]);
 #endif
@@ -26,6 +26,6 @@ callsite()
 IV
 context()
     CODE:
-	RETVAL = PTR2UV(Perl_get_context());
+	RETVAL = PTR2UV(PERL_GET_CONTEXT);
     OUTPUT:
 	RETVAL
