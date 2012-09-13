@@ -1,11 +1,14 @@
 --- #YAML:1.0
 name:                Devel-Callsite
 version:             0.04
-abstract:            ~
+abstract:            Get caller return OP address and Perl interpreter context
 license:             ~
 generated_by:        ExtUtils::MakeMaker version 6.36
 distribution_type:   module
 requires:     
+resources:
+  bugtracker: https://github.com/rocky/Perl-Devel-Callsite/issues
+  repository: http://github.com/rocky/Perl-Devel-Callsite
 meta-spec:
     url:     http://module-build.sourceforge.net/META-spec-v1.2.html
     version: 1.2

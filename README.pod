@@ -7,7 +7,7 @@ where we can immediately see the results and others can contribute.
 =for comment
 =head1 NAME
 
-Devel::Callsite - Get current callsite and interpreter context
+Devel::Callsite - Get caller return OP address and Perl interpreter context
 
 =head1 SYNOPSIS
 
