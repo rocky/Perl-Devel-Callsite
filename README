@@ -7,4 +7,4 @@ make install
 
 process.
 
-See the perldoc inside Callsite.pm for more information.
+See the perldoc inside Callsite.pm or README.pod for more information.

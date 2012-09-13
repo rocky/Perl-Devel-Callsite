@@ -1,24 +1,3 @@
-package Devel::Callsite;
-use 5.005;
-use vars qw($VERSION);
-require DynaLoader;
-use base qw(DynaLoader Exporter);
-$VERSION = '0.04_01';
-@EXPORT = qw/callsite context/;
-
-bootstrap Devel::Callsite;
-
-# Demo code
-unless (caller) { 
-  my $site = sub { return callsite() };
-  printf "OP location: 0x%x\n", $site->(); # prints caller OP location
-  printf "OP location: 0x%x\n", $site->(); # prints a different OP location
-
-  print context(), "\n"; # prints the interpreter context, a number
-}
-
-1;
-__END__
 =for comment
 This file is shared by both README.pod and Callsite.pm after its __END__
 It is also in the github wiki:
@@ -70,4 +49,3 @@ Ben Morrow <ben@morrow.me.uk>
 Ted Zlatanov <tzz@lifelogs.com>
 
 =cut
-
