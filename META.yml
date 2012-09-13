@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                Devel-Callsite
-version:             0.02
+version:             0.04
 abstract:            ~
 license:             ~
 generated_by:        ExtUtils::MakeMaker version 6.36
