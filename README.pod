@@ -35,7 +35,7 @@ This is a fairly unique number together with the call site.
 =head1 HISTORY
 
 Written by Ben Morrow on perl5-porters.  CPAN-ified by Ted Zlatanov.
-Currently maintained (or not) Rocky Bernstein.
+Currently maintained (or not) by Rocky Bernstein.
 
 =head1 SEE ALSO
 
