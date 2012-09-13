@@ -3,7 +3,7 @@ use 5.005;
 use vars qw($VERSION);
 require DynaLoader;
 use base qw(DynaLoader Exporter);
-$VERSION = '0.01';
+$VERSION = '0.02';
 @EXPORT = qw/callsite/;
 
 bootstrap Devel::Callsite;
