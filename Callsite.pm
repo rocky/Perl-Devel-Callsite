@@ -55,8 +55,11 @@ This is a fairly unique number together with the call site.
 
 =head1 HISTORY
 
-Written by Ben Morrow on perl5-porters.  CPAN-ified by Ted Zlatanov.
-Currently maintained (or not) by Rocky Bernstein.
+Ben Morrow conceived this and posted it to perl5-porters. Ted Zlatanov
+then turned it into a CPAN module which he maintained for the first 3
+revisions.
+
+It is currently maintained (or not) by Rocky Bernstein.
 
 =head1 SEE ALSO
 
@@ -64,10 +67,10 @@ L<B::Concise> to disassemble the OP tree. L<Devel::Trepan> optionally
 uses I<Devel::Callsite> to show you exactly where you are stopped
 inside the debugger.
 
-=head1 AUTHOR
+=head1 AUTHORS
 
-Ben Morrow <ben@morrow.me.uk>
+Rocky Bernstein <rocky@cpan.org> (current maintainer)
 Ted Zlatanov <tzz@lifelogs.com>
+Ben Morrow
 
 =cut
-
