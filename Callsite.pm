@@ -3,7 +3,7 @@ use 5.005;
 use vars qw($VERSION);
 require DynaLoader;
 use base qw(DynaLoader Exporter);
-$VERSION = '0.05';
+$VERSION = '0.06';
 @EXPORT = qw/callsite context/;
 
 bootstrap Devel::Callsite;
@@ -14,7 +14,7 @@ unless (caller) {
   printf "OP location: 0x%x\n", $site->(); # prints caller OP location
   printf "OP location: 0x%x\n", $site->(); # prints a different OP location
 
-  print context(), "\n"; # prints the interpreter context, a number
+  print context(), "\n"; # prints the interpreter context, an unsiged number
 }
 
 1;
@@ -37,7 +37,7 @@ Devel::Callsite - Get caller return OP address and Perl interpreter context
   printf "OP location: 0x%x\n", $site->(); # prints caller OP location
   printf "OP location: 0x%x\n", $site->(); # prints a different OP location
 
-  print context(), "\n"; # prints the interpreter context, a number
+  print context(), "\n"; # prints the interpreter context, a unsigned number
 
 =head1 DESCRIPTION
 

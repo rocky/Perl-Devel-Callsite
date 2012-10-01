@@ -7,7 +7,7 @@ MODULE = Devel::Callsite	PACKAGE = Devel::Callsite
 
 PROTOTYPES: Enable
 
-IV
+UV
 callsite()
     INIT:
 #if PERL_VERSION > 8
@@ -18,12 +18,12 @@ callsite()
 	cx = &cxstack[cxstack_ix];
 	RETVAL = PTR2UV(cx->blk_sub.retop);
 #else
-	RETVAL = (IV)(PL_retstack[PL_retstack_ix - 1]);
+	RETVAL = (UV)(PL_retstack[PL_retstack_ix - 1]);
 #endif
     OUTPUT:
 	RETVAL
 
-IV
+UV
 context()
     CODE:
 	RETVAL = PTR2UV(PERL_GET_CONTEXT);

@@ -16,7 +16,7 @@ Devel::Callsite - Get caller return OP address and Perl interpreter context
   printf "OP location: 0x%x\n", $site->(); # prints caller OP location
   printf "OP location: 0x%x\n", $site->(); # prints a different OP location
 
-  print context(), "\n"; # prints the interpreter context, a number
+  print context(), "\n"; # prints the interpreter context, an unsigned number
 
 =head1 DESCRIPTION
 

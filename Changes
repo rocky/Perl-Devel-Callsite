@@ -1,0 +1,22 @@
+Revision history for Devel-Callsite
+
+0.06 - Sep 30, 2012
+-  Make return values be unsigned integers (they are really pointers)
+   Should fix some failing tests
+
+0.05 - Sep 14, 2012
+-  Use PERL_GET_CONTEXT rather than Perl_get_context(). The former macro
+   works for code not built with threading. See 
+   https://rt.cpan.org/Public/Bug/Display.html?id=65625
+-  Revise documentation to reflect that the return values are OP addresses
+   (i.e. unsigned pointer values).
+-  Rocky Bernstein takes over maintainership from Ted Zlatanov.
+
+0.04 - Aug 14, 2008
+- Add context() function
+
+0.02 - Aug 06, 2008
+- Probably a cut-and-paste typo in README. (Remove copyright)
+
+0.01 - Aug 06, 2008
+- Initial release
