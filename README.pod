@@ -4,7 +4,12 @@ It is also in the github wiki:
 https://github.com/rocky/Perl-Devel-Callsite/wiki
 where we can immediately see the results and others can contribute.
 
-=for comment
+=begin html
+
+<img src="https://travis-ci.org/rocky/Perl-Devel-Callsite.png">
+
+=end html
+
 =head1 NAME
 
 Devel::Callsite - Get caller return OP address and Perl interpreter context
