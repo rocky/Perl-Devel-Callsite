@@ -8,4 +8,5 @@
 how-to-make-a-release\.txt
 ^MYMETA.yml$
 ^MYMETA\.json$
-^README.pod
+^README.pod$
+^\.travis\.yml$
