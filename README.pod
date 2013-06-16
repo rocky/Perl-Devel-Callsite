@@ -6,7 +6,7 @@ where we can immediately see the results and others can contribute.
 
 =begin html
 
-<img src="https://travis-ci.org/rocky/Perl-Devel-Callsite.png">
+<a href="https://travis-ci.org/rocky/Perl-Devel-Callsite"><img src="https://travis-ci.org/rocky/Perl-Devel-Callsite.png"></a>
 
 =end html
 
