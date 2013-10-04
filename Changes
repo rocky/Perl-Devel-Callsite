@@ -1,12 +1,15 @@
 Revision history for Devel-Callsite
 
+0.07 - Oct 3, 2013
+-  Add Perl Artistic License
+
 0.06 - Sep 30, 2012
 -  Make return values be unsigned integers (they are really pointers)
    Should fix some failing tests
 
 0.05 - Sep 14, 2012
 -  Use PERL_GET_CONTEXT rather than Perl_get_context(). The former macro
-   works for code not built with threading. See 
+   works for code not built with threading. See
    https://rt.cpan.org/Public/Bug/Display.html?id=65625
 -  Revise documentation to reflect that the return values are OP addresses
    (i.e. unsigned pointer values).
