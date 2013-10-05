@@ -8,4 +8,5 @@ META.yml                                Module meta-data (added by MakeMaker)
 Makefile.PL				How to build it
 README					Description of package
 gpl-2.0.txt				GNU General Public License 2.0
+t/00test-pod.t				Checks POD formatting
 t/basic.t				A Basic test
