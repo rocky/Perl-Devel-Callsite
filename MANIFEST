@@ -1,9 +1,11 @@
+Artistic				Perl Artistic license
 Callsite.pm				The perl part (with the docs as pod)
 Callsite.xs				C code
 Changes					What changed?
 MANIFEST				This file
 MANIFEST.SKIP				Things to to list here
-Makefile.PL				How to build it
-README					Description of package 
-t/basic.t				A Basic test
 META.yml                                Module meta-data (added by MakeMaker)
+Makefile.PL				How to build it
+README					Description of package
+gpl-2.0.txt				GNU General Public License 2.0
+t/basic.t				A Basic test
