@@ -3,7 +3,7 @@ use 5.005;
 use vars qw($VERSION);
 require DynaLoader;
 use base qw(DynaLoader Exporter);
-$VERSION = '0.07';
+$VERSION = '0.07_01';
 @EXPORT = qw/callsite context/;
 
 bootstrap Devel::Callsite;
@@ -19,13 +19,20 @@ unless (caller) {
 
 1;
 __END__
+=encoding utf8
+
 =for comment
 This file is shared by both README.pod and Callsite.pm after its __END__
 It is also in the github wiki:
 https://github.com/rocky/Perl-Devel-Callsite/wiki
 where we can immediately see the results and others can contribute.
 
-=for comment
+=begin html
+
+<a href="https://travis-ci.org/rocky/Perl-Devel-Callsite"><img src="https://travis-ci.org/rocky/Perl-Devel-Callsite.png"></a>
+
+=end html
+
 =head1 NAME
 
 Devel::Callsite - Get caller return OP address and Perl interpreter context
@@ -37,7 +44,7 @@ Devel::Callsite - Get caller return OP address and Perl interpreter context
   printf "OP location: 0x%x\n", $site->(); # prints caller OP location
   printf "OP location: 0x%x\n", $site->(); # prints a different OP location
 
-  print context(), "\n"; # prints the interpreter context, a unsigned number
+  print context(), "\n"; # prints the interpreter context, an unsigned number
 
 =head1 DESCRIPTION
 
@@ -72,5 +79,21 @@ inside the debugger.
 Rocky Bernstein <rocky@cpan.org> (current maintainer)
 Ted Zlatanov <tzz@lifelogs.com>
 Ben Morrow
+
+=head1 LICENSE AND COPYRIGHT
+
+Copyright (C) 2013 Rocky Bernstein <rocky@cpan.org>, Ted Zlatanov,
+<tzz@lifelogs.com>, Ben Morrow
+
+This program is distributed WITHOUT ANY WARRANTY, including but not
+limited to the implied warranties of merchantability or fitness for a
+particular purpose.
+
+The program is free software. You may distribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation (either version 2 or any later version) and
+the Perl Artistic License as published by O’Reilly Media, Inc. Please
+open the files named gpl-2.0.txt and Artistic for a copy of these
+licenses.
 
 =cut
