@@ -3,13 +3,13 @@ use 5.005;
 use vars qw($VERSION);
 require DynaLoader;
 use base qw(DynaLoader Exporter);
-$VERSION = '0.06_01';
+$VERSION = '0.07';
 @EXPORT = qw/callsite context/;
 
 bootstrap Devel::Callsite;
 
 # Demo code
-unless (caller) { 
+unless (caller) {
   my $site = sub { return callsite() };
   printf "OP location: 0x%x\n", $site->(); # prints caller OP location
   printf "OP location: 0x%x\n", $site->(); # prints a different OP location
