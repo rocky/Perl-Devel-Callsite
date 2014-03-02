@@ -1,4 +1,5 @@
-
+#!/usr/bin/env perl
+use strict; use warnings;
 my $threads;
 BEGIN { $threads = eval "use threads; 1" }
 
@@ -8,6 +9,7 @@ eval { require Devel::Callsite };
 ok(!$@, "loading module");
 eval { import Devel::Callsite };
 ok(!$@, "running import");
+my ($callsite1, $callsite2);
 my $site = sub { ${shift()} = callsite();};
 $site->(\$callsite1);
 $site->(\$callsite2);
