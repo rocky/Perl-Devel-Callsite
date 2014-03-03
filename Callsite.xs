@@ -80,7 +80,7 @@ MY_caller_cx(pTHX_ I32 count, const PERL_CONTEXT **dbcxp)
 
 MODULE = Devel::Callsite	PACKAGE = Devel::Callsite
 
-PROTOTYPES: Enable
+PROTOTYPES: DISABLE
 
 SV *
 callsite(level = 0)
