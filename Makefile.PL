@@ -1,7 +1,8 @@
 use ExtUtils::MakeMaker;
 
-WriteMakefile( 
+WriteMakefile(
     'NAME'     => 'Devel::Callsite',
+    'LICENSE'  => 'perl',
     'clean' => {FILES => "*% *.bak ppport.h"},
     'dist'     => { COMPRESS => 'gzip -f9', SUFFIX => '.gz' },
     'VERSION_FROM'  => 'Callsite.pm',
@@ -16,5 +17,9 @@ $(BASEEXT)$(OBJ_EXT): ppport.h
 
 ppport.h:
 	$(PERL) -MDevel::PPPort -eDevel::PPPort::WriteFile
+
+.PHONY: check
+#: Same as make test
+check: test
 
 MAKE
