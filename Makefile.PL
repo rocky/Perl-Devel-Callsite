@@ -2,6 +2,7 @@ use ExtUtils::MakeMaker;
 
 WriteMakefile(
     'NAME'     => 'Devel::Callsite',
+    'LICENSE'  => 'perl',
     'clean' => {FILES => "*% *.bak"},
     'dist'     => { COMPRESS => 'gzip -f9', SUFFIX => '.gz' },
     'VERSION_FROM'  => 'Callsite.pm'
