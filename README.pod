@@ -23,15 +23,25 @@ Devel::Callsite - Get caller return OP address and Perl interpreter context
   printf "OP location: 0x%x\n", $site->(); # prints caller OP location
   printf "OP location: 0x%x\n", $site->(); # prints a different OP location
 
+
+  sub foo { return callsite(1) };
+  sub bar { foo() };
+  # print this OP location even though it is 2 levels up the call chain.
+  printf "OP location: 0x%x\n", bar();
+
   print context(), "\n"; # prints the interpreter context, an unsigned number
 
 =head1 DESCRIPTION
 
 The I<callsite()> function returns the the OP address of the caller, a
-number, one level up from where it was called. It's useful for
-functions that need to uniquely know where they were called, such as
-I<Every::every()>; see L<Every>. Or it can be used to L<pinpoint a
-location with finer granularity than a line
+number. It can take an optional integer specifying the number of
+levels back to get the OP address. If no parameter is given, a value
+of 0 is used which means to go up one level in the call chain. This
+behavior is like the built-in function I<caller>.
+
+This value is useful for functions that need to uniquely know where
+they were called, such as I<Every::every()>; see L<Every>. Or it can
+be used to L<pinpoint a location with finer granularity than a line
 number|http://www.perlmonks.com/?node_id=987268>. In conjunction with
 an OP tree disassembly you can know exactly where the caller is
 located in the Perl source.
@@ -43,7 +53,7 @@ This is a fairly unique number together with the call site.
 
 Ben Morrow conceived this and posted it to perl5-porters. Ted Zlatanov
 then turned it into a CPAN module which he maintained for the first 3
-revisions.
+revisions. Ben also added the level parameter to callsite.
 
 It is currently maintained (or not) by Rocky Bernstein.
 
