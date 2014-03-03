@@ -1,6 +1,7 @@
 #include <EXTERN.h>
 #include <perl.h>
 #include <XSUB.h>
+#include "ppport.h"
 
 #ifndef caller_cx
 /* this should be in ppport.h */
@@ -71,24 +72,32 @@ MY_caller_cx(pTHX_ I32 count, const PERL_CONTEXT **dbcxp)
 
 #endif
 
+#if PERL_VERSION > 8
+#  define MY_RETOP(c) PTR2UV((c)->blk_sub.retop)
+#else
+#  define MY_RETOP(c) ((UV)PL_retstack[(c)->blk_oldretsp - 1])
+#endif
+
 MODULE = Devel::Callsite	PACKAGE = Devel::Callsite
 
 PROTOTYPES: Enable
 
-UV
+SV *
 callsite(level = 0)
         I32 level
     INIT:
-	const register PERL_CONTEXT *cx;
-    CODE:
-        cx = caller_cx(level, 0);
-#if PERL_VERSION > 8
-	RETVAL = PTR2UV(cx->blk_sub.retop);
-#else
-	RETVAL = (UV)(PL_retstack[cx->blk_oldretsp - 1]);
-#endif
-    OUTPUT:
-	RETVAL
+	const PERL_CONTEXT *cx, *dbcx;
+        int rv = 1;
+    PPCODE:
+        cx = caller_cx(level, &dbcx);
+        if (!cx) XSRETURN_EMPTY;
+
+        mXPUSHu(MY_RETOP(cx));
+        if (GIMME == G_ARRAY && CopSTASH_eq(PL_curcop, PL_debstash)) {
+            rv = 2;
+            mXPUSHu(MY_RETOP(dbcx));
+        }
+        XSRETURN(rv);
 
 UV
 context()
