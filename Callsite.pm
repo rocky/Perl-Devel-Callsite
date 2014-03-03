@@ -1,12 +1,12 @@
 package Devel::Callsite;
 use 5.005;
 use vars qw($VERSION);
-require DynaLoader;
-use base qw(DynaLoader Exporter);
+use XSLoader;
+use base qw(Exporter);
 $VERSION = '0.07_01';
 @EXPORT = qw/callsite context/;
 
-bootstrap Devel::Callsite;
+XSLoader::load __PACKAGE__;
 
 # Demo code
 unless (caller) {
