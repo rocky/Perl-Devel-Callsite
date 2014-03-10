@@ -57,7 +57,7 @@ BEGIN {
     # doesn't start using it properly. (Why I'm making this work on 5.6
     # I'm not entirely sure, but there we are.)
     local $^P = 1;
-    sub sub { $db_called++; &$sub; }
+    sub sub { $db_called++; &$DB::sub; }
     sub db3 { Devel::Callsite::callsite(1) }
 }
 
