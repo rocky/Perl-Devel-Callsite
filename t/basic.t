@@ -31,10 +31,10 @@ my $toofar = callsite(1);
 ok !defined $toofar, "Going too far returns undef";
 
 sub doloop { for (1) { callsite(1) } }
-sub loop { 
+sub loop {
     my $x;
     for (1) { $x = doloop() }
-    callsite(), doloop(), $x 
+    callsite(), doloop(), $x
 }
 
 my @loop = loop();
@@ -50,19 +50,20 @@ my @deep = deep();
 is $deep[1], $deep[0], "Deeply nested callsite";
 
 our $db_called = 0;
-BEGIN {   
+BEGIN {
     package DB;
     no strict "refs";
     # DB::sub must be defined in a BEGIN block with $^P = 1 or 5.6
     # doesn't start using it properly. (Why I'm making this work on 5.6
     # I'm not entirely sure, but there we are.)
     local $^P = 1;
+    no warnings 'redefine';
     sub sub { $db_called++; &$DB::sub; }
     sub db3 { Devel::Callsite::callsite(1) }
 }
 
 sub db1 { callsite(1) }
-sub db2 { 
+sub db2 {
     BEGIN { $^P = 1 }
     my @db = (callsite(), db1());
     BEGIN { $^P = 0 }

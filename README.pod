@@ -33,21 +33,39 @@ Devel::Callsite - Get caller return OP address and Perl interpreter context
 
 =head1 DESCRIPTION
 
-The I<callsite()> function returns the the OP address of the caller, a
+=head2 callsite
+
+    $callsite = callsite()
+    $callsite = callsite($level)
+
+This function returns the the OP address of the caller, a
 number. It can take an optional integer specifying the number of
 levels back to get the OP address. If no parameter is given, a value
 of 0 is used which means to go up one level in the call chain. This
-behavior is like the built-in function I<caller>.
+behavior is like the built-in function L<C<caller>|perlfunc/caller>.
 
 This value is useful for functions that need to uniquely know where
-they were called, such as I<Every::every()>; see L<Every>. Or it can
+they were called, such as C<Every::every()>; see L<Every>. Or it can
 be used to L<pinpoint a location with finer granularity than a line
 number|http://www.perlmonks.com/?node_id=987268>. In conjunction with
 an OP tree disassembly you can know exactly where the caller is
 located in the Perl source.
 
-The I<context()> function returns the interpreter context as a number.
-This is a fairly unique number together with the call site.
+As of version 0.08, this function will return the expected call site for
+functions called via C<DB::sub>. (Previously it returned a call site
+inside the debugger.) If C<callsite> is called from package C<DB> in
+list context, it will return two numbers. The first is the ordinary
+return value; the second is the 'true' call site of the function in
+question, which may be different if C<DB::sub> is in use.
+
+=head2 context
+
+    $context = context()
+
+This function returns the interpreter context as a number. Using
+C<callsite> alone to identify the call site is not reliable in programs
+which may include multiple Perl interpreters, such as when using
+ithreads. Combining C<callsite> with C<context> gives a unique location.
 
 =head1 HISTORY
 
