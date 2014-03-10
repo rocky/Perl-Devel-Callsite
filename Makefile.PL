@@ -10,6 +10,19 @@ WriteMakefile(
         "Test::More"    => "0",
         "Devel::PPPort" => "3.00",
     },
+
+    META_MERGE => {
+	resources => {
+	    bugtracker => {
+		web  => 'https://github.com/rocky/Perl-Devel-Callsite/issues',
+           },
+           repository => {
+               type => 'git',
+               url => 'git://github.com/rocky/Perl-Devel-Callsite.git',
+               web => 'http://github.com/rocky/Pelr-Devel-Callsite',
+           }
+       }
+    }
 );
 
 sub MY::postamble { <<'MAKE' }
