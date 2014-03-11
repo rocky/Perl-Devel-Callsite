@@ -1,58 +1,27 @@
 #!/usr/bin/env perl
+# Tests when we're used in conjunction with a debugger
 use strict; use warnings;
-my $threads;
-BEGIN { $threads = eval "use threads; 1" }
+use Test::More;
+use Devel::Callsite;
 
-use Test::More tests => 25 + ($threads ? 2 : 0);
+note('Tests related to using when $^P = 1');
 
-eval { require Devel::Callsite };
-ok(!$@, "loading module");
-eval { import Devel::Callsite };
-ok(!$@, "running import");
-my ($callsite1, $callsite2);
-my $site = sub { ${shift()} = callsite();};
-$site->(\$callsite1);
-$site->(\$callsite2);
-ok($callsite1, "Valid first call");
-ok($callsite2, "Valid second call");
-ok($callsite1 != $callsite2, "Two separate calls");
-
-sub foo { callsite(1) }
-sub bar { callsite(), foo(), callsite(0) }
-
-my @nest = bar();
-is $nest[1], $nest[0], "Nested callsite";
-is $nest[2], $nest[0], "Callsite defaults to level 0";
-
-my @toofar = callsite(1);
-is @toofar, 0, "Going too far returns empty list";
-
-my $toofar = callsite(1);
-ok !defined $toofar, "Going too far returns undef";
-
-sub doloop { for (1) { callsite(1) } }
-sub loop {
-    my $x;
-    for (1) { $x = doloop() }
-    callsite(), doloop(), $x
+BEGIN {
+    if ($^P != 0) {
+	print "1..0 # SKIP This test can't be run under any sort of debugger\n";
+	exit 0;
+    }
 }
 
-my @loop = loop();
-is $nest[1], $nest[0], "Nested callsite inside loop";
-is $nest[2], $nest[0], "Callsite inside two loops";
 
-sub deep1 { callsite(3) }
-sub deep2 { deep1 }
-sub deep3 { deep2 }
-sub deep { callsite(), deep3() }
-
-my @deep = deep();
-is $deep[1], $deep[0], "Deeply nested callsite";
+my $threads;
+BEGIN { $threads = eval "use threads; 1" }
 
 our $db_called = 0;
 BEGIN {
     package DB;
     no strict "refs";
+
     # DB::sub must be defined in a BEGIN block with $^P = 1 or 5.6
     # doesn't start using it properly. (Why I'm making this work on 5.6
     # I'm not entirely sure, but there we are.)
@@ -108,3 +77,5 @@ if ($threads) {
 else {
     ok(context() > 0, "Valid context call");
 }
+
+done_testing;
