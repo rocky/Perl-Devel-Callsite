@@ -1,5 +1,18 @@
 Revision history for Devel-Callsite
 
+0.08 - Mar 10, 2014
+
+NOTE: semantics in this release change slighty when this used in a
+debugger, e.g. $^P != 0. Previously, we might not give a location in
+the source code, but instead a location in the debugger guts.
+
+-  Semantics change noted above. We think this is what is normally desired,
+   for an op-location even if it is incompatible.
+-  Add optional level parameter that functions like builtin caller()
+-  Change repository location in META.yml
+-  Fully document callsite() and context() functions.
+-  Don't use DynaLoader but use XSLoader instead.
+
 0.07 - Oct 5, 2013
 -  Add Perl Artistic License
 
