@@ -26,13 +26,9 @@ WriteMakefile(
 );
 
 sub MY::postamble { <<'MAKE' }
-$(BASEEXT)$(OBJ_EXT): ppport.h
-
-ppport.h:
-	$(PERL) -MDevel::PPPort -eDevel::PPPort::WriteFile
-
 .PHONY: check
 #: Same as make test
 check: test
 
 MAKE
+
