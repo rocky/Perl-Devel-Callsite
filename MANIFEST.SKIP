@@ -6,7 +6,6 @@
 \B\.git\b
 \B\.gitignore\b
 how-to-make-a-release\.txt
-^ppport.h$
 ^MYMETA.yml$
 ^MYMETA\.json$
 ^README.pod$
