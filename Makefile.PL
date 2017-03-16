@@ -3,12 +3,11 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     'NAME'     => 'Devel::Callsite',
     'LICENSE'  => 'perl',
-    'clean' => {FILES => "*% *.bak ppport.h"},
+    'clean' => {FILES => "*% *.bak"},
     'dist'     => { COMPRESS => 'gzip -f9', SUFFIX => '.gz' },
     'VERSION_FROM'  => 'Callsite.pm',
     PREREQ_PM   => {
         "Test::More"    => "0",
-        "Devel::PPPort" => "3.00",
     },
 
     META_MERGE => {
