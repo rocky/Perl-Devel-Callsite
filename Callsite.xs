@@ -19,7 +19,7 @@ PROTOTYPES: DISABLE
 SV *
 callsite(level = 0)
         I32 level
-    INIT:
+    PREINIT:
 	const PERL_CONTEXT *cx, *dbcx;
         int rv = 1;
     PPCODE:
