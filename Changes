@@ -1,5 +1,10 @@
 Revision history for Devel-Callsite
 
+0.10 - Mar 19, 2017
+
+- Botched 0.09 release - add ppport.h to
+  distribution tarball
+
 0.09 - Mar 16, 2017
 
 - fix Devel::PPPort breakage starting with Devel::PPPort 3.25

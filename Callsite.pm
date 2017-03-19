@@ -3,7 +3,7 @@ use 5.005;
 use vars qw($VERSION);
 use XSLoader;
 use base qw(Exporter);
-$VERSION = '0.09';
+$VERSION = '0.10';
 @EXPORT = qw/callsite context/;
 
 XSLoader::load __PACKAGE__;
