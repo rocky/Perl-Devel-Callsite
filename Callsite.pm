@@ -4,10 +4,10 @@ use vars qw($VERSION);
 use XSLoader;
 use base qw(Exporter);
 $VERSION = '1.0.1';
-@EXPORT = qw/callsite context/;
-
 if ($] >= 5.026) {
-    push @EXPORT,  qw('addr_to_op caller_nextop');
+    @EXPORT = qw/callsite context addr_to_op caller_nextop/;
+} else {
+    @EXPORT = qw/callsite context/;
 }
 
 XSLoader::load __PACKAGE__;
