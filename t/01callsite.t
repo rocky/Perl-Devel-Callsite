@@ -15,9 +15,12 @@ ok($callsite1, "Valid first call");
 ok($callsite2, "Valid second call");
 ok($callsite1 != $callsite2, "Two separate calls");
 
-my $op = addr_to_op($callsite1);
-ok $op->isa("B::OP"), "converted $op to to B::OP";
-is $$op, $callsite1, "$op converts back the same address";
+my $op;
+if ($] > 5.026) {
+    $op = addr_to_op($callsite1);
+    ok $op->isa("B::OP"), "converted $op to to B::OP";
+    is $$op, $callsite1, "$op converts back the same address";
+}
 
 sub foo { callsite(1) }
 sub bar { callsite(), foo(), callsite(0) }
@@ -51,9 +54,11 @@ sub deep { callsite(), deep3() }
 my @deep = deep();
 is $deep[1], $deep[0], "Deeply nested callsite";
 
-my $get_op = sub { return caller_nextop() };
-$op = $get_op->();
-ok $op->isa("B::OP"), "caller_nextop returns a B::OP";
+if ($] > 5.026) {
+    my $get_op = sub { return caller_nextop() };
+    $op = $get_op->();
+    ok $op->isa("B::OP"), "caller_nextop returns a B::OP";
+}
 
 
 done_testing;

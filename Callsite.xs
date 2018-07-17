@@ -41,7 +41,11 @@ addr_to_op(IV o_addr)
   CODE:
      const OP *o = INT2PTR(OP*, o_addr);
      RETVAL = newSV(0);
+#if PERL_VERSION < 26
+     sv_setiv(newSVrv(RETVAL, "B::OP"), o_addr);
+#else
      sv_setiv(newSVrv(RETVAL, opclassnames[op_class(o)]), o_addr);
+#endif
   OUTPUT:
      RETVAL
 
