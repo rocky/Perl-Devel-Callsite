@@ -1,6 +1,7 @@
 #include <EXTERN.h>
 #include <perl.h>
 #include <XSUB.h>
+#include <XSUB.h>
 
 #define NEED_caller_cx
 
@@ -10,6 +11,13 @@
 #  define MY_RETOP(c) PTR2UV((c)->blk_sub.retop)
 #else
 #  define MY_RETOP(c) ((UV)PL_retstack[(c)->blk_oldretsp - 1])
+#endif
+
+#if PERL_VERSION >= 26
+#  define B_OP_CLASS op_class
+#else
+#  include "B_Opclass.h"
+#  define B_OP_CLASS cc_opclass
 #endif
 
 /* addr_to_op code provided by ikegami.
@@ -41,11 +49,8 @@ addr_to_op(IV o_addr)
   CODE:
      const OP *o = INT2PTR(OP*, o_addr);
      RETVAL = newSV(0);
-#if PERL_VERSION < 26
-     sv_setiv(newSVrv(RETVAL, "B::OP"), o_addr);
-#else
-     sv_setiv(newSVrv(RETVAL, opclassnames[op_class(o)]), o_addr);
-#endif
+     /* printf("XX class is %s\n", opclassnames[B_OP_CLASS(o)]); */
+     sv_setiv(newSVrv(RETVAL, opclassnames[B_OP_CLASS(o)]), o_addr);
   OUTPUT:
      RETVAL
 

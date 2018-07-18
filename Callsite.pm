@@ -4,36 +4,29 @@ use vars qw($VERSION);
 use XSLoader;
 use base qw(Exporter);
 $VERSION = '1.0.1';
-if ($] >= 5.026) {
-    @EXPORT = qw/callsite context addr_to_op caller_nextop/;
-} else {
-    @EXPORT = qw/callsite context/;
-}
+@EXPORT = qw/callsite context addr_to_op caller_nextop/;
 
 XSLoader::load __PACKAGE__;
 
-BEGIN {
-    if ($] >= 5.026) {
-	sub caller_nextop {
-	    my $level = ($#_ ? shift : 0) + 1;
-	    return addr_to_op(callsite($level));
-	}
-    }
+sub caller_nextop {
+    my $level = ($#_ ? shift : 0) + 1;
+    return addr_to_op(callsite($level));
 }
 
 # Demo code
 unless (caller) {
   my $site = sub { return callsite() };
-  printf "OP location: 0x%x\n", $site->(); # prints caller OP location
+  my $addr =  0 + $site->();
+  printf "OP location: 0x%x\n", $addr; # prints caller OP location
   printf "OP location: 0x%x\n", $site->(); # prints a different OP location
 
-  if ($] >= 5.026) {
-      my $get_op = sub { return caller_nextop() };
-      printf "OP is: %s\n", $get_op->();
+  my $op = addr_to_op($addr);
+  printf("op %s (0x%x)\n", $op, $$op);
+  my $get_op = sub { return caller_nextop() };
+  printf "OP is: %s\n", $get_op->();
 
-      # prints the interpreter context, an unsigned number
-      print "Expression context is: ", context(), "\n";
-  }
+  # prints the interpreter context, an unsigned number
+  print "Expression context is: ", context(), "\n";
 }
 
 1;
@@ -69,11 +62,9 @@ Devel::Callsite - Get caller return OP address and Perl interpreter context
   # print this OP location even though it is 2 levels up the call chain.
   printf "OP location: 0x%x\n", bar();
 
-  if ($] >= 5.025) {
-    printf "OP is: %s\n", addr_to_op($addr);
-    my $get_op = sub { return caller_nextop() };
-    printf "OP is now: %s\n", $get_op->();
-  }
+  printf "OP is: %s\n", addr_to_op($addr);
+  my $get_op = sub { return caller_nextop() };
+  printf "OP is now: %s\n", $get_op->();
 
   print context(), "\n"; # prints the interpreter context, an unsigned number
 
@@ -116,14 +107,10 @@ question, which may be different if C<DB::sub> is in use.
 
 =head2 addr_to_op
 
-I<For now this is only in 5.026 or greater>.
-
     $op = caller_nextop();
     $op = caller_nextop($level);
 
 =head2 caller_nextop
-
-I<For now this is only in 5.026 or greater>.
 
     $op = caller_nextop();
     $op = caller_nextop($level);

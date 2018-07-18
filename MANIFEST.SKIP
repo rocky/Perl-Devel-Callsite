@@ -10,3 +10,4 @@ how-to-make-a-release\.txt
 ^MYMETA\.json$
 ^README.pod$
 ^\.travis\.yml$
+\badmin
