@@ -7,7 +7,7 @@ MANIFEST.SKIP				Things to to list here
 META.yml                                Module meta-data (added by MakeMaker)
 Makefile.PL				How to build it
 B_Opclass.h
-ppport.h				Portability
+ppport.h				Backwards-compatible Perl API Portability
 README					Description of package
 gpl-2.0.txt				GNU General Public License 2.0
 t/00test-pod.t				Checks POD formatting

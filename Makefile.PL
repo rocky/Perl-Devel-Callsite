@@ -18,7 +18,7 @@ WriteMakefile(
            repository => {
                type => 'git',
                url => 'git://github.com/rocky/Perl-Devel-Callsite.git',
-               web => 'http://github.com/rocky/Pelr-Devel-Callsite',
+               web => 'http://github.com/rocky/Perl-Devel-Callsite',
            }
        }
     }
@@ -30,4 +30,3 @@ sub MY::postamble { <<'MAKE' }
 check: test
 
 MAKE
-
